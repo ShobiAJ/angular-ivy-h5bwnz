@@ -1,4 +1,5 @@
 import { Component, VERSION } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'my-app',
@@ -6,5 +7,16 @@ import { Component, VERSION } from '@angular/core';
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent  {
-  name = 'Angular ' + VERSION.major;
+  countryNames = [
+    {country:'India'}, {country:'Japan'}, {country:'China'},{country:'UAE'}
+  ]
+
+  onSubmit(value) {
+    console.log('hi');
+    console.log(value.value);
+  }
+
+  onReset(form: NgForm) {
+    form.reset()
+  }
 }

@@ -1,36 +1,85 @@
 <div class="container">
-<form #myForm="ngForm">
-<div class="form-group">
-  <label>FirstName</label>
-  <input type="text" name="firstname" ngModel required #firstName="ngModel" minlength="3"/>
-  <!-- error if submit btn pressed -->
-  <span *ngIf="myForm.submitted && firstName.errors">
-  <small *ngIf="firstName?.errors?.required" class="not-valid">Field is required</small>
-  <small *ngIf="firstName?.errors?.minlength " class="not-valid">Field requires minimum of 3 characters</small>
-  </span>
-</div>
-<div class="form-group">
-  <label>LastName</label>
-  <input type="text" name="lastName" ngModel required #lastName="ngModel" minlength="3"/>
-  <small *ngIf="lastName?.errors?.required && lastName?.touched  " class="not-valid">Field is required</small>
-  <small *ngIf="lastName?.errors?.minlength && lastName?.touched  " class="not-valid">Field requires minimum of 3 characters</small>
-</div>
-<div class="form-group">
-<label>Email</label>
-<input type="email" name="email" ngModel required #email="ngModel" email/>
-<small *ngIf="!email?.valid && email?.touched  " class="not-valid">Field is required</small>
-</div>
-<div class="form-group">
-<label>Country</label>
-<select ngModel name="country" required #country="ngModel">
-  <option value="" disabled>- Choose -</option>
-  <option *ngFor="let c of countryNames" [value]="c.country">{{c.country}}</option>
-</select>
-<small *ngIf="!country?.valid && country?.touched  " class="not-valid">Field is required</small>
-</div>
-<div class="form-group">
-  <button (click)="onSubmit(myForm)">Submit</button>
-  <button class="right-align" (click)="onReset(myForm)">Reset</button>
-</div>
-</form>
+  <form #myForm="ngForm">
+    <div class="form-group">
+      <label>FirstName</label>
+      <input
+        type="text"
+        name="firstname"
+        ngModel
+        required
+        #firstName="ngModel"
+        minlength="4"
+      />
+      <!-- error if submit btn pressed -->
+      <span
+        *ngIf="(myForm.submitted && firstName.errors) || firstName?.touched"
+      >
+        <small *ngIf="firstName?.errors?.required" class="not-valid"
+          >Field is required</small
+        >
+        <small *ngIf="firstName?.errors?.minlength" class="not-valid"
+          >Field requires minimum of 3 characters</small
+        >
+      </span>
+    </div>
+    <div class="form-group">
+      <label>LastName</label>
+      <input
+        type="text"
+        name="lastName"
+        ngModel
+        required
+        #lastName="ngModel"
+        minlength="4"
+      />
+      <small
+        *ngIf="lastName?.errors?.required && lastName?.touched"
+        class="not-valid"
+        >Field is required</small
+      >
+      <small
+        *ngIf="lastName?.errors?.minlength && lastName?.touched"
+        class="not-valid"
+        >Field requires minimum of 3 characters</small
+      >
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input
+        type="email"
+        name="email"
+        ngModel
+        required
+        #email="ngModel"
+        email
+      />
+      <small *ngIf="!email?.valid && email?.touched" class="not-valid"
+        >Field is required</small
+      >
+    </div>
+    <div>
+    <label>Education</label> 
+    <div *ngFor="let item of education">   
+      <input type="radio" name="education" value="{{item.name}}" ngModel required #educations="ngModel"/>
+      <label for="{{item.name}}"> {{item.name}} </label>
+    </div>
+    </div>
+   
+    <div class="form-group">
+      <label>Country</label>
+      <select ngModel name="country" required #country="ngModel">
+        <option value="" disabled>- Choose -</option>
+        <option *ngFor="let c of countryNames" [value]="c.country">
+          {{ c.country }}
+        </option>
+      </select>
+      <small *ngIf="!country?.valid && country?.touched" class="not-valid"
+        >Field is required</small
+      >
+    </div>
+    <div class="form-group">
+      <button (click)="onSubmit(myForm)">Submit</button>
+      <button class="right-align" (click)="onReset(myForm)">Reset</button>
+    </div>
+  </form>
 </div>

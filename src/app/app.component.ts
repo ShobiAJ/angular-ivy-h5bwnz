@@ -11,6 +11,8 @@ export class AppComponent  {
     {country:'India'}, {country:'Japan'}, {country:'China'},{country:'UAE'}
   ]
 
+  education = [{name : "SSLC", id: 1}, {name : "MBA", id: 2},{name :  "HSC", id: 3}]
+
   onSubmit(value) {
     console.log('hi');
     console.log(value.value);

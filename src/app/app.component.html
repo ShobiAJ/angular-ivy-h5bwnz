@@ -18,7 +18,7 @@
           >Field is required</small
         >
         <small *ngIf="firstName?.errors?.minlength" class="not-valid"
-          >Field requires minimum of 3 characters</small
+          >Field requires minimum of {{firstName?.errors.minlength?.requiredLength}} characters</small
         >
       </span>
     </div>
@@ -40,7 +40,7 @@
       <small
         *ngIf="lastName?.errors?.minlength && lastName?.touched"
         class="not-valid"
-        >Field requires minimum of 3 characters</small
+        >Field requires minimum of {{lastName?.errors.minlength?.requiredLength}} characters</small
       >
     </div>
     <div class="form-group">

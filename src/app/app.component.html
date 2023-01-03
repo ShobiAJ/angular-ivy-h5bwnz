@@ -57,14 +57,29 @@
         >Field is required</small
       >
     </div>
-    <div>
-    <label>Education</label> 
-    <div *ngFor="let item of education">   
-      <input type="radio" name="education" value="{{item.name}}" ngModel required #educations="ngModel"/>
-      <label for="{{item.name}}"> {{item.name}} </label>
-    </div>
-    </div>
-   
+    
+    <div class="form-group">
+    <label >Education</label>      
+      <span *ngFor="let item of education">
+        <input
+          type="radio"
+          name="education"
+          value="{{ item.name }}"
+          ngModel
+          required
+          #educations="ngModel"
+        />
+        <label for="{{ item.name }}"> {{ item.name }} </label>
+      </span>
+      <span *ngIf="myForm.submitted && myForm.form.controls.education.errors">
+        <small
+          *ngIf="myForm.form.controls.education.errors?.required"
+          class="not-valid"
+          >Select any value</small
+        >
+      </span>
+    </div><br>
+
     <div class="form-group">
       <label>Country</label>
       <select ngModel name="country" required #country="ngModel">

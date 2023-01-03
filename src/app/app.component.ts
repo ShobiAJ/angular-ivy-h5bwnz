@@ -15,7 +15,7 @@ export class AppComponent  {
 
   onSubmit(value) {
     console.log('hi');
-    console.log(value.value);
+    console.log(value);
   }
 
   onReset(form: NgForm) {

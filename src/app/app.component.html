@@ -11,7 +11,7 @@
         minlength="4"
       />
       <!-- error if submit btn pressed -->
-      <span
+     <!-- <span
         *ngIf="(myForm.submitted && firstName.errors) || firstName?.touched"
       >
         <small *ngIf="firstName?.errors?.required" class="not-valid"
@@ -20,6 +20,10 @@
         <small *ngIf="firstName?.errors?.minlength" class="not-valid"
           >Field requires minimum of {{firstName?.errors.minlength?.requiredLength}} characters</small
         >
+      </span>-->
+      <span>
+        <small *ngIf="firstName?.errors?.required && firstName.touched" class="not-valid">Feild is required</small>
+        <small *ngIf="firstName?.errors?.minlength" class="not-valid">Field requires minimum of {{firstName?.errors.minlength?.requiredLength}} characters</small>
       </span>
     </div>
     <div class="form-group">
@@ -71,13 +75,13 @@
         />
         <label for="{{ item.name }}"> {{ item.name }} </label>
       </span>
-      <span *ngIf="myForm.submitted && myForm.form.controls.education.errors">
+     <!-- <span *ngIf="myForm.submitted && myForm.form.controls.education.errors">
         <small
           *ngIf="myForm.form.controls.education.errors?.required"
           class="not-valid"
           >Select any value</small
         >
-      </span>
+      </span>-->
     </div><br>
 
     <div class="form-group">

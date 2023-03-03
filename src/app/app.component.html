@@ -11,7 +11,7 @@
         minlength="4"
       />
       <!-- error if submit btn pressed -->
-     <!-- <span
+      <!-- <span
         *ngIf="(myForm.submitted && firstName.errors) || firstName?.touched"
       >
         <small *ngIf="firstName?.errors?.required" class="not-valid"
@@ -22,8 +22,15 @@
         >
       </span>-->
       <span>
-        <small *ngIf="firstName?.errors?.required && firstName.touched" class="not-valid">Feild is required</small>
-        <small *ngIf="firstName?.errors?.minlength" class="not-valid">Field requires minimum of {{firstName?.errors.minlength?.requiredLength}} characters</small>
+        <small
+          *ngIf="firstName?.errors?.required && firstName.touched"
+          class="not-valid"
+          >Feild is required</small
+        >
+        <small *ngIf="firstName?.errors?.minlength" class="not-valid"
+          >Field requires minimum of
+          {{ firstName?.errors.minlength?.requiredLength }} characters</small
+        >
       </span>
     </div>
     <div class="form-group">
@@ -44,7 +51,8 @@
       <small
         *ngIf="lastName?.errors?.minlength && lastName?.touched"
         class="not-valid"
-        >Field requires minimum of {{lastName?.errors.minlength?.requiredLength}} characters</small
+        >Field requires minimum of
+        {{ lastName?.errors.minlength?.requiredLength }} characters</small
       >
     </div>
     <div class="form-group">
@@ -57,13 +65,15 @@
         #email="ngModel"
         email
       />
-      <small *ngIf="!email?.valid && email?.touched" class="not-valid"
-        >Field is required</small
-      >
+      <span *ngIf="email?.errors && email?.touched">
+        <small *ngIf="email?.errors?.required" class="not-valid"
+          >Field is required</small
+        >
+      </span>
     </div>
-    
+
     <div class="form-group">
-    <label >Education</label>      
+      <label>Education</label>
       <span *ngFor="let item of education">
         <input
           type="radio"
@@ -75,14 +85,15 @@
         />
         <label for="{{ item.name }}"> {{ item.name }} </label>
       </span>
-     <!-- <span *ngIf="myForm.submitted && myForm.form.controls.education.errors">
+      <!-- <span *ngIf="myForm.submitted && myForm.form.controls.education.errors">
         <small
           *ngIf="myForm.form.controls.education.errors?.required"
           class="not-valid"
           >Select any value</small
         >
       </span>-->
-    </div><br>
+    </div>
+    <br />
 
     <div class="form-group">
       <label>Country</label>
@@ -102,3 +113,28 @@
     </div>
   </form>
 </div>
+
+<div *ngIf="dataTable.length == 0">
+  <h3 style="text-align: center">Form has no data</h3>
+</div>
+
+<table class="table" *ngIf="dataTable.length > 0">
+  <thead>
+    <tr>
+      <th scope="col">FirstName</th>
+      <th scope="col">LastName</th>
+      <th scope="col">Email</th>
+      <th scope="col">Country</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let arr of dataTable; let i = index">
+      <td>{{ arr.fname }}</td>
+      <td>{{ arr.lname }}</td>
+      <td>{{ arr.email }}</td>
+      <td>{{ arr.country }}</td>
+      <td><button (click)="onDelete(i)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>

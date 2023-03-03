@@ -7,6 +7,10 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  public name: string = '';
+  public genre: string = '';
+
+  dataTable: any = [];
   countryNames = [
     { country: 'India' },
     { country: 'Japan' },
@@ -21,16 +25,27 @@ export class AppComponent {
   ];
 
   onSubmit(form) {
-    console.log(form);
+    console.log(form.value);
     if (form.valid) {
+      let formData = {
+        fname: form.value.firstname,
+        lname: form.value.lastName,
+        email: form.value.email,
+        country: form.value.country,
+      };
+      this.dataTable.push(formData);
       alert('Submitted!');
+      this.onReset(form);
     } else {
-      alert('Invalif form!');
+      alert('Invalid form!');
     }
-    this.onReset(form);
   }
 
   onReset(form: NgForm) {
     form.reset();
+  }
+
+  onDelete(index) {
+    this.dataTable.splice(index, 1);
   }
 }
